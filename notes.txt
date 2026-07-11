@@ -1,0 +1,17 @@
+Day 1 - [09/07/2026]
+Built: 1 switch, 4 PCs, static IP addressing
+Tested: Ping between all PCs - successful
+Issues: none
+
+Day 2 - [10/07/2026]
+Built: Connected R1 and R2 via GigabitEthernet0/0 interfaces
+Configured: Hostnames on R1 and R2 per network diagram
+Configured: Enable password ("cisco") on each router
+Tested: Viewed running-config - password appeared in plaintext (not encrypted)
+Configured: Enabled password encryption (service password-encryption) on each router
+Tested: Viewed running-config again - password now appeared encrypted
+Configured: Disabled password encryption on each router
+Tested: Viewed running-config again - previously encrypted password remained 
+  encrypted (encryption doesn't reverse once applied, only stops encrypting 
+  new passwords going forward)
+Issues: none
