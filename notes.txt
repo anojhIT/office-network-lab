@@ -15,3 +15,18 @@ Tested: Viewed running-config again - previously encrypted password remained
   encrypted (encryption doesn't reverse once applied, only stops encrypting 
   new passwords going forward)
 Issues: none
+
+Day 3 - [12/07/2026]
+Built: Set enable password (cisco) and enable secret (ccna) on R1 and R2
+Tested: Entered privileged exec mode - only "ccna" worked, "cisco" was 
+  rejected - confirmed enable secret always takes priority
+Tested: Viewed running-config - enable secret was encrypted immediately, 
+  enable password stayed plaintext until service password-encryption 
+  was enabled
+Configured: service password-encryption - enable password became 
+  encrypted (weak/Type 7)
+Saved config with "write" (fixed mode error - had to exit config mode 
+  first), confirmed persistence with "reload" - router required "ccna" 
+  after reboot
+Issues: "write" initially failed with "Invalid input detected" - was 
+  in Global Config mode instead of Privileged EXEC mode
