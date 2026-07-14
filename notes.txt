@@ -30,3 +30,27 @@ Saved config with "write" (fixed mode error - had to exit config mode
   after reboot
 Issues: "write" initially failed with "Invalid input detected" - was 
   in Global Config mode instead of Privileged EXEC mode
+
+
+Day 4 - [14/07/2026]
+Built: Connected PC1 to R1 via console port (RS-232), configured 
+  console line security
+Configured: Console password (ccna) on line console 0, added 
+  "login" command to enforce it
+Issue: Initially set the password without "login" - console stayed 
+  open with no prompt since the requirement wasn't enforced. Fixed 
+  by adding "login" under line console 0.
+Issue: "write" failed again with "Invalid input detected" - was 
+  still in (config-line)# mode. Fixed by exiting back to 
+  privileged EXEC (R1#) before running write.
+Configured: service password-encryption - confirmed via 
+  show running-config that the console password is now encrypted 
+  (previously plaintext)
+Learned: service password-encryption encrypts ALL plaintext 
+  passwords in the config at once (console, enable password, VTY), 
+  not just one specific type - enable secret is unaffected since 
+  it's already encrypted automatically
+Tested: Declined the System Configuration Dialog wizard (typed "no") 
+  to go straight to CLI configuration instead
+Saved config with "write", confirmed successful save
+
