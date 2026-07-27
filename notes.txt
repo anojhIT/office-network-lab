@@ -1,56 +1,50 @@
 Day 1 - [09/07/2026]
-Built: 1 switch, 4 PCs, static IP addressing
-Tested: Ping between all PCs - successful
-Issues: none
+
+Built: 1 switch 4 PCs with static IP addressing
+Tested: Ping between all PCs was successful
+Issues: None
 
 Day 2 - [10/07/2026]
-Built: Connected R1 and R2 via GigabitEthernet0/0 interfaces
-Configured: Hostnames on R1 and R2 per network diagram
-Configured: Enable password ("cisco") on each router
-Tested: Viewed running-config - password appeared in plaintext (not encrypted)
-Configured: Enabled password encryption (service password-encryption) on each router
-Tested: Viewed running-config again - password now appeared encrypted
-Configured: Disabled password encryption on each router
-Tested: Viewed running-config again - previously encrypted password remained 
-  encrypted (encryption doesn't reverse once applied, only stops encrypting 
-  new passwords going forward)
-Issues: none
+
+Built: Connected R1 and R2 using GigabitEthernet0/0
+Configured: Set hostnames on R1 and R2 based on the network diagram
+Configured: Set the enable password to cisco on both routers
+Tested: Checked the running configuration and saw the password in plain text
+Configured: Enabled service password encryption on both routers
+Tested: Checked the running configuration again and confirmed the password was encrypted
+Configured: Disabled service password encryption on both routers
+Tested: Checked the running configuration again and confirmed the existing encrypted password stayed encrypted
+Issues: None
 
 Day 3 - [12/07/2026]
-Built: Set enable password (cisco) and enable secret (ccna) on R1 and R2
-Tested: Entered privileged exec mode - only "ccna" worked, "cisco" was 
-  rejected - confirmed enable secret always takes priority
-Tested: Viewed running-config - enable secret was encrypted immediately, 
-  enable password stayed plaintext until service password-encryption 
-  was enabled
-Configured: service password-encryption - enable password became 
-  encrypted (weak/Type 7)
-Saved config with "write" (fixed mode error - had to exit config mode 
-  first), confirmed persistence with "reload" - router required "ccna" 
-  after reboot
-Issues: "write" initially failed with "Invalid input detected" - was 
-  in Global Config mode instead of Privileged EXEC mode
 
+Built: Configured the enable password as cisco and the enable secret as ccna on R1 and R2
+Tested: Entered privileged EXEC mode and confirmed only the enable secret worked
+Tested: Checked the running configuration and confirmed the enable secret was encrypted while the enable password stayed in plain text until service password encryption was enabled
+Configured: Enabled service password encryption and confirmed the enable password became encrypted
+Saved: Used the write command to save the configuration and reloaded the router to confirm the settings were saved
+Issues: The write command failed at first because I was in global configuration mode. I exited to privileged EXEC mode and tried again
 
 Day 4 - [14/07/2026]
-Built: Connected PC1 to R1 via console port (RS-232), configured 
-  console line security
-Configured: Console password (ccna) on line console 0, added 
-  "login" command to enforce it
-Issue: Initially set the password without "login" - console stayed 
-  open with no prompt since the requirement wasn't enforced. Fixed 
-  by adding "login" under line console 0.
-Issue: "write" failed again with "Invalid input detected" - was 
-  still in (config-line)# mode. Fixed by exiting back to 
-  privileged EXEC (R1#) before running write.
-Configured: service password-encryption - confirmed via 
-  show running-config that the console password is now encrypted 
-  (previously plaintext)
-Learned: service password-encryption encrypts ALL plaintext 
-  passwords in the config at once (console, enable password, VTY), 
-  not just one specific type - enable secret is unaffected since 
-  it's already encrypted automatically
-Tested: Declined the System Configuration Dialog wizard (typed "no") 
-  to go straight to CLI configuration instead
-Saved config with "write", confirmed successful save
 
+Built: Connected PC1 to R1 using the console cable
+Configured: Set the console password to ccna on line console 0 and enabled login
+Tested: Verified the console password was required before accessing the CLI
+Configured: Enabled service password encryption and confirmed the console password was encrypted in the running configuration
+Tested: Skipped the System Configuration Dialog and entered the CLI directly
+Saved: Used the write command to save the configuration successfully
+Issues: Forgot to use the login command at first so the console password was not enforced. Also tried the write command while still in configuration mode and had to return to privileged EXEC mode
+
+Day 5 - [27/07/2026]
+
+Built: Created two VLANs on two switches with four PCs
+Configured: Assigned PC1 and PC3 to VLAN 1
+Configured: Assigned PC2 and PC4 to VLAN 2
+Tested: Ping between PC1 and PC3 was successful
+Tested: Ping between PC2 and PC4 failed
+Learned: VLAN 2 devices could not communicate because the link between the switches was not configured as a trunk
+Configured: Changed the link between SW1 and SW2 to trunk mode
+Tested: Ping between PC1 and PC3 was successful
+Tested: Ping between PC2 and PC4 was successful
+Learned: After configuring the trunk both VLANs could communicate between the switches
+Issues: None
