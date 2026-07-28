@@ -48,3 +48,13 @@ Tested: Ping between PC1 and PC3 was successful
 Tested: Ping between PC2 and PC4 was successful
 Learned: After configuring the trunk both VLANs could communicate between the switches
 Issues: None
+
+Day 6 - [28/07/2026]
+
+Built: Connected two switches with three PCs
+Configured: Assigned PC2 and PC3 to VLAN 2
+Tested: Ping between the PCs before trunk configuration
+Configured: Created a trunk link between SW1 and SW2 using 802.1Q encapsulation
+Tested: Verified successful connectivity between devices in the same VLAN across both switches
+Learned: Trunk links carry traffic for multiple VLANs between switches while VLANs keep network traffic separated
+Issues: Had to configure trunk encapsulation as dot1q before enabling trunk mode because the switch was using auto encapsulation
