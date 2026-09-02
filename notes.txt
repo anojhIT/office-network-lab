@@ -57,4 +57,16 @@ Tested: Ping between the PCs before trunk configuration
 Configured: Created a trunk link between SW1 and SW2 using 802.1Q encapsulation
 Tested: Verified successful connectivity between devices in the same VLAN across both switches
 Learned: Trunk links carry traffic for multiple VLANs between switches while VLANs keep network traffic separated
-Issues: Had to configure trunk encapsulation as dot1q before enabling trunk mode because the switch was using auto encapsulation
+Issues: Had to configure trunk encapsulation as dot1q before enabling trunk mode because the switch was using auto encapsulation  
+
+
+
+Day 7 - VLSM & Static Routing - [02/09/2026]
+Built: Subnetted 192.168.5.0/24 using VLSM to support 4 LANs with different host requirements (45, 64, 14, and 9 hosts)
+Configured: Assigned the first usable address in each LAN to the PC, and the last usable address to the router's interface
+Configured: Static routes on R1 and R2 so each router could reach networks it does not directly own
+Tested: Verified show ip route output showed connected (C) routes for locally owned LANs and static (S) routes for remote LANs
+Tested: Pinged between PCs across different LANs - first two pings timed out, then succeeded
+Learned: Initial ping timeouts were caused by ARP resolving the destination MAC address for the first time, not a misconfiguration - this is normal ARP behavior
+Learned: In VLSM, subnets must be allocated largest requirement first to avoid overlapping address ranges within the same parent network
+Issues: None
