@@ -70,3 +70,14 @@ Tested: Pinged between PCs across different LANs - first two pings timed out, th
 Learned: Initial ping timeouts were caused by ARP resolving the destination MAC address for the first time, not a misconfiguration - this is normal ARP behavior
 Learned: In VLSM, subnets must be allocated largest requirement first to avoid overlapping address ranges within the same parent network
 Issues: None
+
+Day 8 - Inter-VLAN Routing (Multiple Physical Interfaces) - [02/09/2026]
+Built: 3 VLANs (Engineering, HR, Sales) on SW1, each in a separate /26 subnet, with 3 separate physical connections from R1 to SW1
+Configured: Assigned static IP addresses to each PC, using the last usable address in each subnet as the default gateway
+Configured: One R1 interface per VLAN, each set to the gateway address configured on the PCs
+Configured: Assigned SW1's interfaces to the correct VLANs, keeping the R1-facing interfaces correctly matched to each VLAN
+Configured: Named the VLANs (Engineering, HR, Sales)
+Tested: Verified ping connectivity between PCs across different VLANs, confirming inter-VLAN routing worked
+Tested: Sent a broadcast ping to each subnet's broadcast address in Simulation Mode to observe which PCs received it
+Learned: A broadcast ping only reaches devices within the same VLAN/subnet - it does not cross VLAN boundaries, confirming VLANs correctly isolate broadcast domains
+Issues: None
