@@ -81,3 +81,16 @@ Tested: Verified ping connectivity between PCs across different VLANs, confirmin
 Tested: Sent a broadcast ping to each subnet's broadcast address in Simulation Mode to observe which PCs received it
 Learned: A broadcast ping only reaches devices within the same VLAN/subnet - it does not cross VLAN boundaries, confirming VLANs correctly isolate broadcast domains
 Issues: None
+
+
+
+Day 9 - VLAN Trunking & Router-on-a-Stick - [11/09/2026]
+Built: 3 VLANs (10, 20, 30) across two switches (SW1, SW2) and one router (R1), each VLAN in its own /26 subnet
+Configured: Access ports on SW1 and SW2 connecting to PCs, assigned to the correct VLANs
+Configured: Trunk link between SW1 and SW2, allowing only the necessary VLANs and setting an unused VLAN as the native VLAN
+Configured: Router-on-a-stick between SW2 and R1 - created subinterfaces on R1 for each VLAN, with 802.1Q encapsulation matching each VLAN
+Configured: Assigned the last usable address of each subnet to R1's subinterfaces
+Tested: Verified ping connectivity between PCs across all VLANs and switches
+Learned: A trunk's native VLAN carries untagged traffic - using an unused VLAN as native avoids accidentally mixing native VLAN traffic with a real data VLAN (a known security consideration)
+Learned: Router-on-a-stick uses one physical link with multiple logical subinterfaces, unlike Day 8's method which used a separate physical interface per VLAN
+Issues: None
