@@ -8,16 +8,16 @@ Following [Jeremy's IT Lab CCNA course](https://www.youtube.com/@JeremysITLab) a
 
 1. Basic Device Config — hostnames, passwords, console security ✅
 2. VLANs & Trunking — VLAN setup, trunk links between switches ✅
-3. Subnetting (VLSM) — planning IP addresses 🔲
-4. Static Routing 🔲
-5. Inter-VLAN Routing 🔲
+3. Subnetting (VLSM) — planning IP addresses ✅
+4. Static Routing ✅
+5. Inter-VLAN Routing ✅
 6. DHCP 🔲
 7. ACLs 🔲
 8. NAT 🔲
 9. Port Security & SSH 🔲
-10. STP / RSTP 🔲
+10. STP / RSTP ✅
 11. EtherChannel 🔲
-12. OSPF (single-area) 🔲
+12. OSPF (single-area) ✅
 13. HSRP (First Hop Redundancy) 🔲
 14. IPv6 Addressing & Routing 🔲
 15. DHCP Snooping & Dynamic ARP Inspection 🔲
