@@ -94,3 +94,21 @@ Tested: Verified ping connectivity between PCs across all VLANs and switches
 Learned: A trunk's native VLAN carries untagged traffic - using an unused VLAN as native avoids accidentally mixing native VLAN traffic with a real data VLAN (a known security consideration)
 Learned: Router-on-a-stick uses one physical link with multiple logical subinterfaces, unlike Day 8's method which used a separate physical interface per VLAN
 Issues: None
+
+Day 10 - Floating Static Routes - [22/09/2026]
+Built: Dual-ISP topology with Enterprise A (R1, R2) connecting to two ISPs (SPR1 via ISP A cloud, SPR2 directly) for redundant internet access
+Configured: A primary default static route on R1 and R2 pointing toward one ISP path
+Configured: A floating static route as backup, using a higher administrative distance so it only activates if the primary route fails
+Tested: Verified show ip route output - primary route (S*) shown as active with the lower AD, floating route hidden from the table while the primary is up
+Tested: Pinged across the topology - some initial timeouts observed, consistent with route convergence/failover behavior
+Learned: A floating static route only appears in the routing table and gets used once the primary route (with lower AD) becomes unavailable - this provides automatic backup path failover without needing a dynamic routing protocol
+Issues: None
+
+Day 11 - OSPF (Single Area) - [28/09/2026]
+Built: 4-router single-area OSPF network (R1-R4, all in Area 0), connected via multiple FastEthernet links plus a switch and PC for end-to-end testing
+Configured: OSPF process on each router, advertising the correct networks into Area 0
+Tested: Verified show ip ospf neighbor and adjacency states - confirmed neighbors reached FULL state (not stuck in INIT/2-WAY/EXSTART/LOADING)
+Tested: Verified show ip ospf interface brief - confirmed correct Process ID, Area, cost, and DR/BDR state per interface
+Learned: On multi-access networks, OSPF elects a DR (Designated Router) and BDR (Backup DR) to reduce the number of adjacencies formed - R3 showed as DR with a neighbor elected BDR, rather than every router forming full adjacencies with every other router
+Learned: The %OSPF-5-ADJCHG log message confirms neighbor state transitions (e.g. LOADING to FULL), useful for verifying adjacency formation during troubleshooting
+Issues: None
